@@ -27,7 +27,7 @@ class _SensorsScreenState extends State<SensorsScreen> with SingleTickerProvider
     setState(() => _isLoading = true);
     try {
       final response = await http.post(
-        Uri.parse("http://10.0.2.2:5000/predict"), // emulator
+        Uri.parse("https://disaster-backend-api.onrender.com/predict"), // live api
         headers: {"Content-Type": "application/json"},
         body: jsonEncode({
           "lat": _lat,
@@ -53,6 +53,13 @@ class _SensorsScreenState extends State<SensorsScreen> with SingleTickerProvider
         for (var p in predictions) {
           await NotificationService.showLocalAlert("⚠️ Alert", p.toString());
         }
+
+        // Show urgent dialog if high risk detected
+        if (predictions.any((p) => p.toString().toLowerCase().contains("high"))) {
+          if (mounted) {
+            _showHighRiskDialog(predictions.join("\n"));
+          }
+        }
       } else {
         setState(() => _predictionResult = "Error: ${response.statusCode}");
       }
@@ -62,6 +69,50 @@ class _SensorsScreenState extends State<SensorsScreen> with SingleTickerProvider
     } finally {
       setState(() => _isLoading = false);
     }
+  }
+
+  void _showHighRiskDialog(String message) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: Colors.white,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        title: const Row(
+          children: [
+            Icon(Icons.warning_rounded, color: Colors.red, size: 28),
+            SizedBox(width: 12),
+            Text('CRITICAL RISK', style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold, fontSize: 18)),
+          ],
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'A high-intensity risk has been detected in your area.',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+            ),
+            const SizedBox(height: 12),
+            Text(message, style: const TextStyle(color: AppTheme.grayText, fontSize: 13)),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('DISMISS', style: TextStyle(color: AppTheme.grayText)),
+          ),
+          ElevatedButton(
+            onPressed: () => Navigator.pop(context),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.red,
+              foregroundColor: Colors.white,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+            ),
+            child: const Text('TAKE ACTION'),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
@@ -371,7 +422,7 @@ class _SensorsScreenState extends State<SensorsScreen> with SingleTickerProvider
                           const Text('AI ANALYSIS RESULT', style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, letterSpacing: 1.2)),
                           const SizedBox(height: 4),
                           Text(
-                            "Prediction: $_predictionResult",
+                            "Prediction: ${_predictionResult.replaceAll('[', '').replaceAll(']', '')}",
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stellar Weather Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-container"></div>
+    <div class="container">
+        <header>
+            <div class="search-container">
+                <input type="text" id="city-input" placeholder="Search for a city..." autocomplete="off">
+                <button id="search-btn"><span class="search-icon">🔍</span></button>
+            </div>
+        </header>
+
+        <main id="weather-content" class="hidden">
+            <div class="current-weather">
+                <div class="city-info">
+                    <h1 id="city-name">Loading...</h1>
+                    <p id="current-date"></p>
+                </div>
+                <div class="temp-container">
+                    <div class="main-temp" id="temperature">--°C</div>
+                    <div class="weather-desc" id="description">Clear Sky</div>
+                </div>
+                <div class="weather-icon-large" id="main-icon">☀️</div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-icon">💧</span>
+                    <div class="stat-info">
+                        <span class="stat-label">Humidity</span>
+                        <span class="stat-value" id="humidity">--%</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-icon">💨</span>
+                    <div class="stat-info">
+                        <span class="stat-label">Wind Speed</span>
+                        <span class="stat-value" id="wind-speed">-- km/h</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-icon">🌡️</span>
+                    <div class="stat-info">
+                        <span class="stat-label">Feels Like</span>
+                        <span class="stat-value" id="feels-like">--°C</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="forecast-container">
+                <h2>Next 5 Days</h2>
+                <div class="forecast-row" id="forecast-row">
+                    <!-- Forecast items will be added here via JS -->
+                </div>
+            </div>
+        </main>
+
+        <div id="loading-container" class="loading">
+            <p>Searching for weather data...</p>
+        </div>
+
+        <div id="error-message" class="hidden">
+            <p>Oops! Could not find weather for that location.</p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -2,16 +2,16 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class PredictionService {
-  static const String baseUrl = "http://10.0.2.2:5000"; // Use 10.0.2.2 for Android Emulator
+  static const String baseUrl = "https://disaster-backend-api.onrender.com";
 
-  Future<String> getPrediction(double rainfall, double riverLevel) async {
+  Future<String> getPrediction(double lat, double lon) async {
     try {
       final response = await http.post(
         Uri.parse("$baseUrl/predict"),
         headers: {"Content-Type": "application/json"},
         body: jsonEncode({
-          "rainfall": rainfall,
-          "river_level": riverLevel
+          "lat": lat,
+          "lon": lon
         }),
       );
 

@@ -3,11 +3,11 @@ import 'dart:convert';
 
 Future getPrediction() async {
   final response = await http.post(
-    Uri.parse("http://10.0.2.2:5000/predict"), // emulator
+    Uri.parse("https://disaster-backend-api.onrender.com/predict"),
     headers: {"Content-Type": "application/json"},
     body: jsonEncode({
-      "rainfall": 250,
-      "river_level": 90
+      "lat": 28.6,
+      "lon": 77.2
     }),
   );
 

@@ -48,23 +48,30 @@ class _ClimateIntelligenceScreenState extends State<ClimateIntelligenceScreen>
     });
 
     try {
-      // Modify IP to match your connected device (e.g. 10.0.2.2 for Android emulator or local WiFi IP)
+      // Using the live Render API endpoint
       final response = await http.post(
-        Uri.parse("http://192.168.1.5:5000/predict"), // Placeholder IP, user might need to change
+        Uri.parse("https://disaster-backend-api.onrender.com/predict"),
         headers: {"Content-Type": "application/json"},
         body: jsonEncode({
-          "rainfall": 250,
-          "river_level": 90
+          "lat": 28.6,
+          "lon": 77.2
         }),
       );
 
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
-        // Assuming response is something like: {"risk_probability": 0.85, "flood_index": "High Risk"}
+        final List predictions = data['prediction'] ?? [];
         setState(() {
-          _riskProbability = (data['risk_probability'] ?? 0.85).toDouble();
-          _flashFloodIndex = data['flood_index'] ?? 'High Risk';
+          _riskProbability = (data['forecast'] ?? 0.85).toDouble() / 150.0; // normalizing forecast value for progress bar
+          _flashFloodIndex = predictions.join(", ");
         });
+
+        // Trigger urgent alert dialog for high risk
+        if (predictions.any((p) => p.toString().toLowerCase().contains("high"))) {
+          if (mounted) {
+            _showClimateRiskDialog(predictions.join("\n"));
+          }
+        }
       } else {
         debugPrint("API Error: ${response.statusCode}");
       }
@@ -77,6 +84,50 @@ class _ClimateIntelligenceScreenState extends State<ClimateIntelligenceScreen>
         });
       }
     }
+  }
+
+  void _showClimateRiskDialog(String message) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: Colors.white,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        title: const Row(
+          children: [
+            Icon(Icons.crisis_alert, color: AppTheme.primaryOrange, size: 28),
+            SizedBox(width: 12),
+            Expanded(child: Text('CLIMATE ALERT', style: TextStyle(color: AppTheme.primaryOrange, fontWeight: FontWeight.bold, fontSize: 18))),
+          ],
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'Unusual environmental activity detected.',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+            ),
+            const SizedBox(height: 12),
+            Text(message, style: const TextStyle(color: AppTheme.grayText, fontSize: 13)),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('DISMISS', style: TextStyle(color: AppTheme.grayText)),
+          ),
+          ElevatedButton(
+            onPressed: () => Navigator.pop(context),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppTheme.primaryOrange,
+              foregroundColor: Colors.white,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+            ),
+            child: const Text('VIEW EMERGENCY PLAN'),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
