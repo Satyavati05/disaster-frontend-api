@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import './GlobalRiskMonitor.css';
-import { Menu, Bell, User, Search, Navigation2, Layers, Hurricane, Droplets, Activity, Mountain, CloudRain, AlertTriangle, Info } from 'lucide-react';
+import { Menu, Bell, User, Search, Navigation2, Layers, Tornado, Droplets, Activity, Mountain, CloudRain, AlertTriangle, Info } from 'lucide-react';
 import L from 'leaflet';
 
 // Fix for default leaflet marker icon issue in React
@@ -84,7 +84,7 @@ const GlobalRiskMonitor = () => {
           <div className="layer-list">
             <div className={`layer-item ${layers.cyclone ? 'active' : ''}`} onClick={() => toggleLayer('cyclone')}>
               <div className="layer-info">
-                <Hurricane size={20} className="layer-icon text-orange" />
+                <Tornado size={20} className="layer-icon text-orange" />
                 <span>Cyclone Path</span>
               </div>
               <div className={`toggle-switch ${layers.cyclone ? 'on' : 'off'}`}>
