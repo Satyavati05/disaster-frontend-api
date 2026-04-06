@@ -1,16 +1,58 @@
-# skyrox
+#  Disaster Prediction & Alert System
 
-A new Flutter project.
+##  Overview
+The Disaster Prediction & Alert System is a real-time application designed to monitor and predict natural disasters such as earthquakes, floods, and cyclones. 
 
-## Getting Started
+It provides early alerts and critical information to help users stay informed and prepared.
 
-This project is a starting point for a Flutter application.
+---
 
-A few resources to get you started if this is your first Flutter project:
+##  Problem Statement
+Natural disasters often occur without timely awareness, leading to loss of life and property. This application aims to bridge that gap by providing **real-time alerts and predictive insights.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+---
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+##  Features
+-  Real-time disaster data (Earthquakes, Floods, Cyclones, Cloudbursts)
+-  Location-based alerts
+-  Fast and responsive UI
+-  Early warning system
+-  Data visualization 
+
+---
+
+##  Tech Stack
+
+### Frontend
+- React.js / Flutter 
+- HTML, CSS, JavaScript
+
+### Backend
+- Node.js / Python 
+
+### Deployment
+- Frontend: Vercel
+- Backend: Render
+
+### APIs
+- OpenWeather API
+- USGS Earthquake API
+---
+
+##  Live Demo
+-  Frontend: (Add your Vercel link)
+-  Backend API: https://disaster-backend-api.onrender.com
+
+---
+
+## ⚙️ Installation & Setup
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/Satyavati05/disaster-frontend-api.git
+cd disaster-frontend-api
+
+
+
+
+
