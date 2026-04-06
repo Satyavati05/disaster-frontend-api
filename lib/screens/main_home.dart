@@ -8,7 +8,7 @@ import 'sensors_screen.dart';
 import '../theme/app_theme.dart';
 
 class MainHome extends StatefulWidget {
-  const MainHome({Key? key}) : super(key: key);
+  const MainHome({super.key});
 
   @override
   State<MainHome> createState() => _MainHomeState();

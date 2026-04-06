@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../theme/app_theme.dart';
 
 class ClimateHubScreen extends StatelessWidget {
-  const ClimateHubScreen({Key? key}) : super(key: key);
+  const ClimateHubScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -203,7 +203,7 @@ class ClimateHubScreen extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.02),
+            color: Colors.black.withValues(alpha: 0.02),
             blurRadius: 10,
           )
         ],
@@ -235,7 +235,7 @@ class ClimateHubScreen extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                 decoration: BoxDecoration(
-                  color: AppTheme.primaryOrange.withOpacity(0.1),
+                  color: AppTheme.primaryOrange.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: const Text(
@@ -268,7 +268,7 @@ class ClimateHubScreen extends StatelessWidget {
                 child: Text(
                   "Keep going! You're in the top 15% of learners this week.",
                   style: TextStyle(
-                    color: AppTheme.primaryOrange.withOpacity(0.8),
+                    color: AppTheme.primaryOrange.withValues(alpha: 0.8),
                     fontSize: 12,
                     fontWeight: FontWeight.bold,
                   ),
@@ -298,7 +298,7 @@ class ClimateHubScreen extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.02),
+            color: Colors.black.withValues(alpha: 0.02),
             blurRadius: 8,
           ),
         ],
@@ -340,7 +340,7 @@ class ClimateHubScreen extends StatelessWidget {
                   child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(
-                      color: AppTheme.primaryOrange.withOpacity(0.8),
+                      color: AppTheme.primaryOrange.withValues(alpha: 0.8),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: const Text(
@@ -435,7 +435,7 @@ class ClimateHubScreen extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.02),
+            color: Colors.black.withValues(alpha: 0.02),
             blurRadius: 8,
           ),
         ],
@@ -446,7 +446,7 @@ class ClimateHubScreen extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: AppTheme.primaryOrange.withOpacity(0.1),
+              color: AppTheme.primaryOrange.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(12),
             ),
             child: Icon(icon, color: AppTheme.primaryOrange),

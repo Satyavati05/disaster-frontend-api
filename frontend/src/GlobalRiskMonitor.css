@@ -1,0 +1,388 @@
+.risk-monitor-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'Outfit', sans-serif;
+}
+
+.map-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.ui-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  pointer-events: none; /* Let clicks pass through by default */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Enable pointer events on interactive elements */
+.app-bar, .search-wrap, .risk-layers-card, .active-threat-card, .bottom-sheet-peek, .map-controls {
+  pointer-events: auto;
+}
+
+/* App Bar */
+.app-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background: rgba(240, 242, 245, 0.85); /* Slightly off-white glass */
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.app-bar h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+
+.icon-btn:hover {
+  background: rgba(0,0,0,0.05);
+}
+
+.alert-badge {
+  background: #ff5722;
+  box-shadow: 0 4px 10px rgba(255, 87, 34, 0.3);
+}
+
+.avatar-btn {
+  background: #fdf2e9;
+  border: 1px solid #f5cba7;
+  margin-left: 10px;
+}
+
+.right-actions {
+  display: flex;
+}
+
+/* Search Box */
+.search-wrap {
+  padding: 15px 20px;
+}
+
+.search-box {
+  background: white;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.search-icon-color {
+  color: #e65100;
+  margin-right: 12px;
+}
+
+.search-box input {
+  border: none;
+  background: transparent;
+  width: 100%;
+  font-size: 1rem;
+  outline: none;
+  color: #555;
+  font-family: inherit;
+}
+
+.search-box input::placeholder {
+  color: #999;
+}
+
+/* Map Controls */
+.map-controls {
+  position: absolute;
+  right: 20px;
+  top: 140px;
+  display: flex;
+  flex-direction: column;
+}
+
+.control-group {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.mt-3 {
+  margin-top: 12px;
+}
+
+.control-btn {
+  background: transparent;
+  border: none;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.control-btn:hover {
+  background: #f5f5f5;
+}
+
+.border-bottom {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+/* Risk Layers Card */
+.risk-layers-card {
+  background: white;
+  margin: 0 20px;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  width: max-content;
+  max-width: calc(100vw - 100px);
+}
+
+.risk-layers-card h4 {
+  font-size: 0.75rem;
+  color: #5d6d7e;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+}
+
+.layer-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.layer-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: transparent;
+}
+
+.layer-item.active {
+  background: rgba(230, 81, 0, 0.05);
+  border: 1px solid rgba(230, 81, 0, 0.15);
+}
+
+.layer-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.95rem;
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+.text-orange { color: #e65100; }
+.text-blue { color: #1565c0; }
+.text-red { color: #c62828; }
+.text-green { color: #2e7d32; }
+.text-cyan { color: #00838f; }
+
+/* Custom Toggle */
+.toggle-switch {
+  width: 44px;
+  height: 24px;
+  border-radius: 12px;
+  background: #d5d8dc;
+  position: relative;
+  transition: background 0.3s;
+}
+
+.toggle-switch.on {
+  background: #ff6e40;
+}
+
+.toggle-thumb {
+  width: 18px;
+  height: 18px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  transition: transform 0.3s;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.toggle-switch.on .toggle-thumb {
+  transform: translateX(20px);
+}
+
+/* Active Threat Card */
+.active-threat-card {
+  background: white;
+  border-radius: 16px;
+  margin: auto 20px 20px 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.threat-header {
+  background: linear-gradient(135deg, #f35012, #e65100);
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+.threat-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.threat-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.threat-category {
+  background: rgba(255,255,255,0.2);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.threat-body {
+  padding: 20px;
+}
+
+.threat-body h3 {
+  font-size: 1.3rem;
+  color: #111;
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  color: #666;
+  font-size: 0.85rem;
+  margin-bottom: 20px;
+}
+
+.threat-stats {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.stat-box {
+  flex: 1;
+  background: #f8f9fa;
+  padding: 12px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-label {
+  font-size: 0.65rem;
+  color: #888;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.stat-val {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #222;
+}
+
+.btn-detailed-report {
+  width: 100%;
+  padding: 14px;
+  background: #fff4e6;
+  color: #e65100;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-detailed-report:hover {
+  background: #ffe8cc;
+}
+
+/* Bottom Sheet Peek */
+.bottom-sheet-peek {
+  background: white;
+  padding: 15px 20px 30px 20px;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  box-shadow: 0 -5px 20px rgba(0,0,0,0.05);
+  margin-top: auto;
+}
+
+.drag-handle {
+  width: 40px;
+  height: 4px;
+  background: #d5d8dc;
+  border-radius: 2px;
+  margin: 0 auto 15px auto;
+}
+
+.bottom-sheet-peek h3 {
+  font-size: 1.1rem;
+  color: #222;
+  margin-bottom: 6px;
+}
+
+.bottom-sheet-peek p {
+  color: #666;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+@media (min-width: 768px) {
+  .risk-monitor-container {
+    padding-left: 250px; /* Leave space for a potential sidebar */
+  }
+  .risk-layers-card, .active-threat-card {
+    min-width: 320px;
+  }
+}

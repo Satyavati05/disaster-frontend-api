@@ -4,7 +4,7 @@ import '../services/auth_service.dart';
 import 'otp_screen.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({super.key});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -97,7 +97,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   shape: BoxShape.circle,
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.05),
+                      color: Colors.black.withValues(alpha: 0.05),
                       blurRadius: 10,
                     )
                   ],
@@ -191,7 +191,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   'Include country code, e.g. +91XXXXXXXXXX',
                   style: TextStyle(
                     fontSize: 12,
-                    color: AppTheme.grayText.withOpacity(0.8),
+                    color: AppTheme.grayText.withValues(alpha: 0.8),
                   ),
                 ),
               ),
@@ -232,7 +232,7 @@ class _LoginScreenState extends State<LoginScreen> {
             boxShadow: isSelected
                 ? [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.05),
+                      color: Colors.black.withValues(alpha: 0.05),
                       blurRadius: 4,
                       offset: const Offset(0, 2),
                     )

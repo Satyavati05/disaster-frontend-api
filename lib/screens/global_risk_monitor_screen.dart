@@ -4,7 +4,7 @@ import '../theme/app_theme.dart';
 import 'disaster_screen.dart';
 
 class GlobalRiskMonitorScreen extends StatefulWidget {
-  const GlobalRiskMonitorScreen({Key? key}) : super(key: key);
+  const GlobalRiskMonitorScreen({super.key});
 
   @override
   State<GlobalRiskMonitorScreen> createState() => _GlobalRiskMonitorScreenState();
@@ -39,7 +39,7 @@ class _GlobalRiskMonitorScreenState extends State<GlobalRiskMonitorScreen> {
       if (permission == LocationPermission.deniedForever) throw Exception('GPS perm. denied');
 
       Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high
+        locationSettings: const LocationSettings(accuracy: LocationAccuracy.high),
       );
       setState(() {
         _currentLocationText = '${position.latitude.toStringAsFixed(4)}, ${position.longitude.toStringAsFixed(4)}';
@@ -67,7 +67,7 @@ class _GlobalRiskMonitorScreenState extends State<GlobalRiskMonitorScreen> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        backgroundColor: AppTheme.lightGrayBg.withOpacity(0.9),
+        backgroundColor: AppTheme.lightGrayBg.withValues(alpha: 0.9),
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.menu, color: AppTheme.darkText),
@@ -127,7 +127,7 @@ class _GlobalRiskMonitorScreenState extends State<GlobalRiskMonitorScreen> {
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(12),
                 boxShadow: [
-                  BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 10)
+                  BoxShadow(color: Colors.black.withValues(alpha: 0.05), blurRadius: 10)
                 ],
               ),
               child: TextField(
@@ -182,7 +182,7 @@ class _GlobalRiskMonitorScreenState extends State<GlobalRiskMonitorScreen> {
                 borderRadius: BorderRadius.circular(16),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.1),
+                    color: Colors.black.withValues(alpha: 0.1),
                     blurRadius: 15,
                   )
                 ],
@@ -231,7 +231,7 @@ class _GlobalRiskMonitorScreenState extends State<GlobalRiskMonitorScreen> {
                 borderRadius: BorderRadius.circular(16),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.15),
+                    color: Colors.black.withValues(alpha: 0.15),
                     blurRadius: 20,
                     offset: const Offset(0, 10),
                   )
@@ -264,7 +264,7 @@ class _GlobalRiskMonitorScreenState extends State<GlobalRiskMonitorScreen> {
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                           decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(0.2),
+                            color: Colors.white.withValues(alpha: 0.2),
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: const Text(
@@ -318,7 +318,7 @@ class _GlobalRiskMonitorScreenState extends State<GlobalRiskMonitorScreen> {
                                       style: TextStyle(
                                         fontSize: 10,
                                         fontWeight: FontWeight.bold,
-                                        color: AppTheme.grayText.withOpacity(0.7),
+                                        color: AppTheme.grayText.withValues(alpha: 0.7),
                                       ),
                                     ),
                                     const SizedBox(height: 4),
@@ -350,7 +350,7 @@ class _GlobalRiskMonitorScreenState extends State<GlobalRiskMonitorScreen> {
                                       style: TextStyle(
                                         fontSize: 10,
                                         fontWeight: FontWeight.bold,
-                                        color: AppTheme.grayText.withOpacity(0.7),
+                                        color: AppTheme.grayText.withValues(alpha: 0.7),
                                       ),
                                     ),
                                     const SizedBox(height: 4),
@@ -373,7 +373,7 @@ class _GlobalRiskMonitorScreenState extends State<GlobalRiskMonitorScreen> {
                           width: double.infinity,
                           padding: const EdgeInsets.symmetric(vertical: 12),
                           decoration: BoxDecoration(
-                            color: AppTheme.primaryOrange.withOpacity(0.1),
+                            color: AppTheme.primaryOrange.withValues(alpha: 0.1),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: const Row(
@@ -468,7 +468,7 @@ class _GlobalRiskMonitorScreenState extends State<GlobalRiskMonitorScreen> {
             : null,
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.05),
+              color: Colors.black.withValues(alpha: 0.05),
               blurRadius: 10,
             )
           ],
@@ -489,9 +489,9 @@ class _GlobalRiskMonitorScreenState extends State<GlobalRiskMonitorScreen> {
       margin: const EdgeInsets.only(bottom: 8),
       padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
       decoration: BoxDecoration(
-        color: isHighlight ? AppTheme.primaryOrange.withOpacity(0.1) : Colors.transparent,
+        color: isHighlight ? AppTheme.primaryOrange.withValues(alpha: 0.1) : Colors.transparent,
         borderRadius: BorderRadius.circular(8),
-        border: isHighlight ? Border.all(color: AppTheme.primaryOrange.withOpacity(0.3)) : null,
+        border: isHighlight ? Border.all(color: AppTheme.primaryOrange.withValues(alpha: 0.3)) : null,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -517,10 +517,10 @@ class _GlobalRiskMonitorScreenState extends State<GlobalRiskMonitorScreen> {
           Switch(
             value: value,
             onChanged: onChanged,
-            activeColor: Colors.white,
+            activeThumbColor: Colors.white,
             activeTrackColor: AppTheme.primaryOrange,
             inactiveThumbColor: Colors.white,
-            inactiveTrackColor: Colors.blueGrey.withOpacity(0.3),
+            inactiveTrackColor: Colors.blueGrey.withValues(alpha: 0.3),
           )
         ],
       ),

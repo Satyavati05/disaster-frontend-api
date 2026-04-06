@@ -161,7 +161,7 @@ class _DisasterScreenState extends State<DisasterScreen> with SingleTickerProvid
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
-        side: BorderSide(color: severityColor.withOpacity(0.4), width: 1.2),
+        side: BorderSide(color: severityColor.withValues(alpha: 0.4), width: 1.2),
       ),
       child: ListTile(
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -169,7 +169,7 @@ class _DisasterScreenState extends State<DisasterScreen> with SingleTickerProvid
           width: 48,
           height: 48,
           decoration: BoxDecoration(
-            color: severityColor.withOpacity(0.1),
+            color: severityColor.withValues(alpha: 0.1),
             shape: BoxShape.circle,
           ),
           child: Icon(
@@ -195,7 +195,7 @@ class _DisasterScreenState extends State<DisasterScreen> with SingleTickerProvid
         trailing: Container(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
           decoration: BoxDecoration(
-            color: severityColor.withOpacity(0.12),
+            color: severityColor.withValues(alpha: 0.12),
             border: Border.all(color: severityColor, width: 1),
             borderRadius: BorderRadius.circular(20),
           ),

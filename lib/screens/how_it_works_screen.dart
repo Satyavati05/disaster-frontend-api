@@ -3,7 +3,7 @@ import '../theme/app_theme.dart';
 import 'main_home.dart';
 
 class HowItWorksScreen extends StatelessWidget {
-  const HowItWorksScreen({Key? key}) : super(key: key);
+  const HowItWorksScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -169,21 +169,21 @@ class HowItWorksScreen extends StatelessWidget {
                     title: 'Satellite Data',
                     description: 'Continuous stream of high-resolution imagery and atmospheric data from Earth-orbiting satellites.',
                     iconColor: AppTheme.primaryOrange,
-                    iconBgColor: AppTheme.primaryOrange.withOpacity(0.1),
+                    iconBgColor: AppTheme.primaryOrange.withValues(alpha: 0.1),
                   ),
                   _InfoCard(
                     icon: Icons.sensors,
                     title: 'Sensor Networks',
                     description: 'Millions of ground-based oceanic and terrestrial sensors tracking micro-level environmental changes.',
                     iconColor: AppTheme.primaryOrange,
-                    iconBgColor: AppTheme.primaryOrange.withOpacity(0.1),
+                    iconBgColor: AppTheme.primaryOrange.withValues(alpha: 0.1),
                   ),
                   _InfoCard(
                     icon: Icons.memory,
                     title: 'AI Analysis',
                     description: 'Deep learning algorithms process petabytes of data to predict complex climate patterns with unprecedented accuracy.',
                     iconColor: AppTheme.primaryOrange,
-                    iconBgColor: AppTheme.primaryOrange.withOpacity(0.1),
+                    iconBgColor: AppTheme.primaryOrange.withValues(alpha: 0.1),
                   ),
                 ],
               ),
@@ -326,7 +326,7 @@ class _InfoCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.02),
+            color: Colors.black.withValues(alpha: 0.02),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),
@@ -385,9 +385,9 @@ class _ComparisonCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: isAi ? AppTheme.primaryOrange.withOpacity(0.1) : AppTheme.surfaceWhite,
+        color: isAi ? AppTheme.primaryOrange.withValues(alpha: 0.1) : AppTheme.surfaceWhite,
         borderRadius: BorderRadius.circular(16),
-        border: isAi ? Border.all(color: AppTheme.primaryOrange.withOpacity(0.3)) : null,
+        border: isAi ? Border.all(color: AppTheme.primaryOrange.withValues(alpha: 0.3)) : null,
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -395,7 +395,7 @@ class _ComparisonCard extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: isAi ? AppTheme.primaryOrange.withOpacity(0.2) : AppTheme.inputBg,
+              color: isAi ? AppTheme.primaryOrange.withValues(alpha: 0.2) : AppTheme.inputBg,
               borderRadius: BorderRadius.circular(8),
             ),
             child: Icon(

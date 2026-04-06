@@ -22,6 +22,10 @@ class _SensorsScreenState extends State<SensorsScreen> with SingleTickerProvider
   double _magnitude = 0.0;
   String _predictionResult = "Not Calculated";
   bool _isLoading = false;
+  
+  // Live Data
+  double _liveTemp = 31.2;
+  double _liveWind = 18.0;
 
   Future<void> _getPrediction() async {
     setState(() => _isLoading = true);
@@ -39,7 +43,11 @@ class _SensorsScreenState extends State<SensorsScreen> with SingleTickerProvider
       if (response.statusCode == 200) {
         var data = jsonDecode(response.body);
         List predictions = data['prediction'];
-        setState(() => _predictionResult = predictions.join(", "));
+        setState(() {
+          _predictionResult = predictions.join(", ");
+          _liveTemp = (data['temperature'] ?? 31.2).toDouble();
+          _liveWind = (data['wind_speed'] ?? 18.0).toDouble();
+        });
 
         // Store result in firebase
         await FirebaseFirestore.instance.collection('weather_predictions').add({
@@ -284,7 +292,7 @@ class _SensorsScreenState extends State<SensorsScreen> with SingleTickerProvider
                 ),
                 _buildSensorCard(
                   title: 'Surface Temp',
-                  value: '31.2',
+                  value: _liveTemp.toStringAsFixed(1),
                   unit: '°C',
                   icon: Icons.thermostat,
                   trend: '+1.4',
@@ -293,7 +301,7 @@ class _SensorsScreenState extends State<SensorsScreen> with SingleTickerProvider
                 ),
                 _buildSensorCard(
                   title: 'Wind Speed',
-                  value: '18',
+                  value: _liveWind.toStringAsFixed(1),
                   unit: 'km/h',
                   icon: Icons.speed,
                   trend: '+4',

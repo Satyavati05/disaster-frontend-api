@@ -18,7 +18,7 @@ void main() async {
 }
 
 class ClimateAIApp extends StatelessWidget {
-  const ClimateAIApp({Key? key}) : super(key: key);
+  const ClimateAIApp({super.key});
 
   @override
   Widget build(BuildContext context) {

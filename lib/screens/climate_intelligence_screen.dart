@@ -810,8 +810,11 @@ class _InteractiveElementState extends State<_InteractiveElement> {
         onExit: (_) => setState(() => _isHovered = false),
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 150),
-          transform: Matrix4.identity()
-            ..scale(_isPressed ? 0.97 : (_isHovered ? 1.01 : 1.0)),
+          transform: Matrix4.diagonal3Values(
+            _isPressed ? 0.97 : (_isHovered ? 1.01 : 1.0),
+            _isPressed ? 0.97 : (_isHovered ? 1.01 : 1.0),
+            1.0,
+          ),
           child: widget.child,
         ),
       ),

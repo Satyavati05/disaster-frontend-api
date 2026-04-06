@@ -14,12 +14,12 @@ class OtpScreen extends StatefulWidget {
   final AuthService authService;
 
   const OtpScreen({
-    Key? key,
+    super.key,
     required this.phoneNumber,
     required this.role,
     required this.verificationId,
     required this.authService,
-  }) : super(key: key);
+  });
 
   @override
   State<OtpScreen> createState() => _OtpScreenState();
@@ -70,8 +70,8 @@ class _OtpScreenState extends State<OtpScreen> {
     final otp = _otpCode;
 
     // ── Debug prints ────────────────────────────────────────────────────────
-    print("[OTP] Verification ID: $_verificationId");
-    print("[OTP] SMS code entered: $otp");
+    debugPrint("[OTP] Verification ID: $_verificationId");
+    debugPrint("[OTP] SMS code entered: $otp");
     // ────────────────────────────────────────────────────────────────────────
 
     if (otp.length < 6) {
@@ -89,11 +89,11 @@ class _OtpScreenState extends State<OtpScreen> {
         smsCode: otp,
       );
 
-      print("[OTP] Calling signInWithCredential...");
+      debugPrint("[OTP] Calling signInWithCredential...");
       final userCredential =
           await FirebaseAuth.instance.signInWithCredential(credential);
       final uid = userCredential.user?.uid;
-      print("[OTP] Sign-in successful. UID: $uid");
+      debugPrint("[OTP] Sign-in successful. UID: $uid");
 
       if (uid != null) {
         final user = userCredential.user!;
@@ -112,7 +112,7 @@ class _OtpScreenState extends State<OtpScreen> {
         );
       }
     } on FirebaseAuthException catch (e) {
-      print("[OTP] FirebaseAuthException → code: ${e.code}, message: ${e.message}");
+      debugPrint("[OTP] FirebaseAuthException → code: ${e.code}, message: ${e.message}");
       if (!mounted) return;
 
       String userMessage;
@@ -139,7 +139,7 @@ class _OtpScreenState extends State<OtpScreen> {
         ),
       );
     } catch (e) {
-      print("[OTP] Unknown error: $e");
+      debugPrint("[OTP] Unknown error: $e");
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Error: ${e.toString()}')),
@@ -223,7 +223,7 @@ class _OtpScreenState extends State<OtpScreen> {
                 width: 64,
                 height: 64,
                 decoration: BoxDecoration(
-                  color: AppTheme.primaryOrange.withOpacity(0.1),
+                  color: AppTheme.primaryOrange.withValues(alpha: 0.1),
                   shape: BoxShape.circle,
                 ),
                 child: const Center(
