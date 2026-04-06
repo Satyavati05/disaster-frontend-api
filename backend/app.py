@@ -44,16 +44,22 @@ def get_earthquakes(lat, lon):
     return None
 
 
+import os
+
 # 🔹 Load Models
+base_dir = os.path.dirname(os.path.abspath(__file__))
+rf_model_path = os.path.join(base_dir, 'rf_model.pkl')
+lstm_model_path = os.path.join(base_dir, 'lstm_model.h5')
+
 try:
-    rf_model = pickle.load(open('rf_model.pkl', 'rb'))
+    rf_model = pickle.load(open(rf_model_path, 'rb'))
 except Exception as e:
     print(f"RF Model Load Error: {e}")
     rf_model = None
 
 try:
     from tensorflow.keras.models import load_model
-    lstm_model = load_model("lstm_model.h5")
+    lstm_model = load_model(lstm_model_path)
 except:
     lstm_model = None
 
