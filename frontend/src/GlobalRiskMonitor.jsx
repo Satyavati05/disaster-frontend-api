@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import './GlobalRiskMonitor.css';
 import { Menu, Bell, User, Search, Navigation2, Layers, Tornado, Droplets, Activity, Mountain, CloudRain, AlertTriangle, Info } from 'lucide-react';
