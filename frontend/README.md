@@ -1,16 +1,72 @@
-# React + Vite
+# 🌍 Disaster Prediction & Alert System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🚀 Overview
+The Disaster Prediction & Alert System is a real-time application designed to monitor and predict natural disasters such as earthquakes, floods, and cyclones. 
 
-Currently, two official plugins are available:
+It provides early alerts and critical information to help users stay informed and prepared.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 🎯 Problem Statement
+Natural disasters often occur without timely awareness, leading to loss of life and property. This application aims to bridge that gap by providing **real-time alerts and predictive insights**.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 💡 Features
+- 🌐 Real-time disaster data (Earthquakes, Floods, Cyclones)
+- 📍 Location-based alerts
+- ⚡ Fast and responsive UI features (Glassmorphism & Interactive Maps)
+- 🔔 Early warning system
+- 🤖 Advanced AI Risk Prediction (Random Forest & Deep Learning LSTMs)
+- 📊 Data visualization
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🛠 Tech Stack
+
+### Frontend
+- React.js (Vite) & Flutter (Mobile)
+- HTML, CSS, JavaScript
+- React Leaflet (Map Visualization)
+
+### Backend
+- Python (Flask)
+- TensorFlow & Scikit-Learn (Machine Learning)
+
+### Deployment
+- Frontend: Vercel
+- Backend: Vercel (Serverless API)
+
+### APIs
+- Open-Meteo API (Live Weather & Forecasting)
+- USGS Earthquake API (Global Seismic Data)
+
+---
+
+## 🔗 Live Demo
+- 🌐 Frontend: [https://disaster-frontend-git-main-satyavati05s-projects.vercel.app/](https://disaster-frontend-git-main-satyavati05s-projects.vercel.app/)
+- ⚙️ Backend API: [https://disaster-frontend-git-main-satyavati05s-projects.vercel.app/api](https://disaster-frontend-git-main-satyavati05s-projects.vercel.app/api)
+
+---
+
+## ⚙️ Installation & Setup
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/Satyavati05/disaster-frontend-api.git
+cd disaster-frontend-api
+```
+
+### 2. Frontend Setup (React Web)
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+### 3. Backend Setup (Flask API)
+```bash
+cd backend
+pip install -r requirements.txt
+python app.py
+```
